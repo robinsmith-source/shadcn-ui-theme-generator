@@ -7,20 +7,9 @@ import CopyButton from "@/components/misc/copy-button.tsx";
 
 
 export default function ThemeSection() {
-    // const [hsva, setHsva] = useState({h: 0, s: 0, v: 68, a: 1});
     return (
-        <section className="grid grid-cols-2">
-            {/*<Colorful
-                disableAlpha
-                color={hsva}
-
-                onChange={(color) => {
-                    setHsva(color.hsva);
-                    console.log(color.hsva)
-                }}
-            />*/}
+        <section className="w-full sm:w-96">
             <div className="flex flex-col justify-center items-center gap-8">
-
 
                 <RadiusSelector onChange={(radius) => {
                     console.log("radius", radius)
