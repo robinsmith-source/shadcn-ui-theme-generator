@@ -1,23 +1,24 @@
-import {Slider} from "@/components/ui/slider.tsx";
-import Colorful from "@uiw/react-color-colorful";
-import {useState} from "react";
 import RadiusSelector from "@/components/selector/radius-selector.tsx";
 import {ModeToggle} from "@/components/misc/mode-toggle.tsx";
 import SaturationSelector from "@/components/selector/saturation-selector.tsx";
-import BrightnessSelector from "@/components/selector/brightness-selector.tsx";
+import LightnessSelector from "@/components/selector/lightness-selector.tsx";
+import HueSelector from "@/components/selector/hue-selector.tsx";
+import CopyButton from "@/components/misc/copy-button.tsx";
 
 
 export default function ThemeSection() {
-    const [hsva, setHsva] = useState({h: 0, s: 0, v: 68, a: 1});
+    // const [hsva, setHsva] = useState({h: 0, s: 0, v: 68, a: 1});
     return (
         <section className="grid grid-cols-2">
-            <Colorful
+            {/*<Colorful
                 disableAlpha
                 color={hsva}
+
                 onChange={(color) => {
                     setHsva(color.hsva);
+                    console.log(color.hsva)
                 }}
-            />
+            />*/}
             <div className="flex flex-col justify-center items-center gap-8">
 
 
@@ -25,15 +26,26 @@ export default function ThemeSection() {
                     console.log("radius", radius)
                 }}/>
 
+                <HueSelector onChange={(radius) => {
+                    console.log("hue", radius)
+                }}/>
+
                 <SaturationSelector onChange={
                     (saturation) => {
                         console.log("saturation", saturation)
                     }
                 }/>
-                <BrightnessSelector onChange={(brightness) => {
+
+                <LightnessSelector onChange={(brightness) => {
                     console.log("brightness", brightness)
                 }}/>
-                <ModeToggle/>
+                <ModeToggle onChange={
+                    (mode) => {
+                        console.log("mode", mode)
+                    }
+                }/>
+
+                <CopyButton/>
             </div>
         </section>
     )
