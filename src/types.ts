@@ -1,5 +1,3 @@
-import {HslColor} from "@uiw/color-convert";
-
 export type CSSVariables = {
     "--background": string
     "--foreground": string
@@ -30,14 +28,5 @@ export type SelectionValues = {
     lightness: number
     config : {
         radius: number
-        theme: "light" | "dark"
-    }
-}
-
-export type ThemeInput = {
-    color: HslColor
-    config: {
-        radius: number
-        theme: "light" | "dark"
     }
 }

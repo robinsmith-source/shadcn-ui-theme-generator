@@ -13,8 +13,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <div className="flex flex-col items-center justify-center space-y-16 mx-auto min-h-screen max-w-screen-lg p-6">
             <ThemeProvider>
                 <Header/>
+                <div className="dynamic-theme flex flex-col justify-center items-center gap-6">
                 <ThemeSection/>
                 <DemoSection/>
+                </div>
                 <Footer/>
             </ThemeProvider>
         </div>
