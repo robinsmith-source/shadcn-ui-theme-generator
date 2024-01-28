@@ -9,6 +9,7 @@ import {useEffect, useState} from "react";
 import {generateTheme} from "@/utils/theme-generator.ts";
 import {SelectionValues} from "@/types.ts";
 import {syncTheme} from "@/utils/theme-syncer.ts";
+import {useDebounce} from "usehooks-ts";
 
 
 export default function ThemeSection() {
@@ -23,9 +24,11 @@ export default function ThemeSection() {
         }
     )
 
+    const debouncedValue = useDebounce<SelectionValues>(selection, 200)
+
     useEffect(() => {
-        syncTheme(generateTheme(selection), "dynamic-theme");
-    }, [selection]);
+        syncTheme(generateTheme(debouncedValue), ".dynamic-theme");
+    }, [debouncedValue]);
 
     return (
         <section className="w-full sm:w-96">

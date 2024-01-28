@@ -18,7 +18,7 @@ export type CSSVariables = {
     "--border": string
     "--input": string
     "--ring": string
-    "--radius": string
+    "--radius"?: string
 }
 
 
