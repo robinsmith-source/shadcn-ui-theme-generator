@@ -48,22 +48,22 @@ function generateLightPalette(themeInputs: SelectionValues) {
     }
 }
 function generateDarkPalette(themeInputs: SelectionValues) {
-    const background = new Color(0,0,100).getColor();
-    const foreground = new Color(themeInputs.hue - 40, 70, 4).getColor();
-    const card = new Color(0,0,100).getColor();
-    const primary = new Color(themeInputs.hue - 5, 83, 57).getColor();
-    const primaryForeground = new Color(themeInputs.hue, 70, 4).getColor();
-    const secondary = new Color(themeInputs.hue - 40, 14, 50).getColor();
+    const background = new Color(themeInputs.hue - 40,71,4).getColor();
+    const foreground = new Color(themeInputs.hue - 50,20,98).getColor();
+    const card = new Color(themeInputs.hue - 40, 71,4).getColor();
+    const primary = new Color(themeInputs.hue, 70, 50).getColor();
+    const primaryForeground = new Color(themeInputs.hue - 40, 20, 98).getColor();
 
-    const muted = `${themeInputs.hue - 50} , ${themeInputs.saturation < 30 ? themeInputs.saturation : 30}%, ${25}%`;
-    const mutedForeground = `${themeInputs.hue} , ${5}%, ${60}%`;
-    const accent = `${themeInputs.hue - 50} , ${themeInputs.saturation < 30 ? themeInputs.saturation : 30}%, ${themeInputs.lightness < 25 ? themeInputs.lightness : 25}%`;
-    const accentForeground = `${themeInputs.hue - 50} , ${5}%, ${90}%`;
-    const destructive = new Color(0, 50, 50).getColor();
-    const destructiveForeground = `${themeInputs.hue - 50} , ${5}%, ${90}%`;
-    const border = `${themeInputs.hue} , ${themeInputs.saturation < 30 ? themeInputs.saturation : 30}%, ${themeInputs.lightness < 50 ? themeInputs.lightness : 50}%`;
-    const input = `${themeInputs.hue} , ${themeInputs.saturation < 30 ? themeInputs.saturation : 30}%, ${themeInputs.lightness < 50 ? themeInputs.lightness : 50}%`;
-    const ring = `${themeInputs.hue} , ${55}%, ${40}%`;
+    const secondary = new Color(themeInputs.hue - 40, 27, 17).getColor();
+    const muted = new Color(themeInputs.hue - 50, 27, 17).getColor();
+    const mutedForeground = new Color(themeInputs.hue - 38, 10, 65).getColor();
+    const accent = new Color(themeInputs.hue - 40, 27, 17).getColor();
+    const accentForeground = new Color(themeInputs.hue - 40, 20, 98).getColor();
+    const destructive = new Color(0,63,30).getColor();
+    const destructiveForeground = new Color(themeInputs.hue - 40, 20, 98).getColor();
+    const border = new Color(themeInputs.hue - 40, 27, 17).getColor();
+    const input = new Color(themeInputs.hue - 40, 27, 17).getColor();
+    const ring = new Color(themeInputs.hue, 70, 50).getColor();
 
     return {
         "--background": background,
