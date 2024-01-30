@@ -1,241 +1,89 @@
 import type {SelectionValues} from "@/types.ts";
 import {Color} from "@/utils/color-adjuster.ts";
 
-//TODO: Scary implementation fix this!!
 export function generateTheme(themeInputs: SelectionValues) {
-    return new ThemePalette(themeInputs).generateTheme();
+    return {
+        light: generateLightPalette(themeInputs),
+        dark: generateDarkPalette(themeInputs),
+    };
 }
+function generateLightPalette(themeInputs: SelectionValues) {
+    const background = new Color(0,0,100).getColor();
+    const foreground = new Color(themeInputs.hue - 40, 70, 4).getColor();
+    const card = new Color(0,0,100).getColor();
+    const primary = new Color(themeInputs.hue - 5, 83, 57).getColor();
+    const primaryForeground = new Color(themeInputs.hue, 70, 4).getColor();
+    const secondary = new Color(themeInputs.hue - 40, 14, 50).getColor();
+    const muted = new Color(themeInputs.hue - 40, 14, 95).getColor();
+    const mutedForeground = new Color(themeInputs.hue - 40, 9, 45).getColor();
+    const accent = new Color(themeInputs.hue - 40, 14, 95).getColor();
+    const accentForeground = new Color(themeInputs.hue - 40, 40, 11).getColor();
+    const destructive = new Color(0, 84, 60).getColor();
+    const destructiveForeground = new Color(themeInputs.hue - 50, 20, 98).getColor();
+    const border = new Color(themeInputs.hue - 40, 13, 91).getColor();
+    const input = new Color(themeInputs.hue - 40, 13, 91).getColor();
+    const ring = new Color(themeInputs.hue, 93, 58).getColor();
 
-class ThemePalette {
-    themeInputs: SelectionValues;
-
-    constructor(themeInputs: SelectionValues) {
-        this.themeInputs = themeInputs;
-    }
-
-    generateTheme() {
-        return {
-            light: new LightPalette(this.themeInputs).generateLightTheme(),
-            dark: new DarkPalette(this.themeInputs).generateDarkTheme(),
-        }
-    }
-}
-
-class LightPalette extends ThemePalette {
-    constructor(themeInputs: SelectionValues) {
-        super(themeInputs);
-    }
-
-    private getBackground() {
-        return new Color(this.themeInputs.hue, this.themeInputs.saturation, this.themeInputs.lightness).getColorWithThreshold(50, 10);
-    }
-
-    private getForeground() {
-        return new Color(this.themeInputs.hue, this.themeInputs.saturation, this.themeInputs.lightness).getColorWithThreshold(5, 90);
-    }
-
-    private getCard() {
-        return new Color(this.themeInputs.hue, this.themeInputs.saturation, this.themeInputs.lightness).getColorWithThreshold(80, 5);
-    }
-
-    private getCardForeground() {
-        return this.getForeground()
-    }
-
-    private getPopover() {
-        return this.getCard()
-    }
-
-    private getPopoverForeground() {
-        return this.getForeground()
-    }
-
-    private getPrimary() {
-        return `${this.themeInputs.hue - 5} , ${this.themeInputs.saturation}%, ${this.themeInputs.lightness}%`
-
-    }
-
-    private getPrimaryForeground() {
-        return `${0} , ${100}%, ${100}%`
-
-    }
-
-    private getSecondary() {
-        return `${this.themeInputs.hue - 180} , ${this.themeInputs.saturation < 30 ? this.themeInputs.saturation : 30}%, ${this.themeInputs.lightness}%`
-    }
-
-    private getSecondaryForeground() {
-        return this.getPrimaryForeground()
-    }
-
-    private getMuted() {
-        return `${this.themeInputs.hue - 50} , ${this.themeInputs.saturation < 30 ? this.themeInputs.saturation : 30}%, ${25}%`
-    }
-
-    private getMutedForeground() {
-        return `${this.themeInputs.hue} , ${5}%, ${60}%`
-    }
-
-    private getAccent() {
-        return `${this.themeInputs.hue - 50} , ${this.themeInputs.saturation < 30 ? this.themeInputs.saturation : 30}%, ${this.themeInputs.lightness < 25 ? this.themeInputs.lightness : 25}%`
-    }
-
-    private getAccentForeground() {
-        return `${this.themeInputs.hue - 50} , ${5}%, ${90}%`
-    }
-
-    private getDestructive() {
-        return new Color(0, 50, 50).getColor()
-    }
-
-    private getDestructiveForeground() {
-        return `${this.themeInputs.hue - 50} , ${5}%, ${90}%`
-    }
-
-    private getBorder() {
-        return `${this.themeInputs.hue - 50} , ${this.themeInputs.saturation < 30 ? this.themeInputs.saturation : 30}%, ${this.themeInputs.lightness < 50 ? this.themeInputs.lightness : 50}%`
-
-    }
-
-    private getInput() {
-        return `${this.themeInputs.hue - 50} , ${this.themeInputs.saturation < 30 ? this.themeInputs.saturation : 30}%, ${this.themeInputs.lightness < 50 ? this.themeInputs.lightness : 50}%`
-    }
-
-    private getRing() {
-        return `${this.themeInputs.hue - 50} , ${55}%, ${40}%`
-    }
-
-    generateLightTheme() {
-        return {
-            "--background": this.getBackground(),
-            "--foreground": this.getForeground(),
-            "--card": this.getCard(),
-            "--card-foreground": this.getCardForeground(),
-            "--popover": this.getPopover(),
-            "--popover-foreground": this.getPopoverForeground(),
-            "--primary": this.getPrimary(),
-             "--primary-foreground": this.getForeground(),
-             "--secondary": this.getSecondary(),
-             "--secondary-foreground": this.getSecondaryForeground(),
-             "--muted": this.getMuted(),
-             "--muted-foreground": this.getMutedForeground(),
-             "--accent": this.getAccent(),
-             "--accent-foreground": this.getAccentForeground(),
-             "--destructive": this.getDestructive(),
-             "--destructive-foreground": this.getDestructiveForeground(),
-             "--border": this.getBorder(),
-             "--input": this.getInput(),
-             "--ring": this.getRing(),
-        }
+    return {
+        "--background": background,
+        "--foreground": foreground,
+        "--card": card,
+        "--card-foreground": foreground,
+        "--popover": card,
+        "--popover-foreground": foreground,
+        "--primary": primary,
+        "--primary-foreground": primaryForeground,
+        "--secondary": secondary,
+        "--secondary-foreground": primaryForeground,
+        "--muted": muted,
+        "--muted-foreground": mutedForeground,
+        "--accent": accent,
+        "--accent-foreground": accentForeground,
+        "--destructive": destructive,
+        "--destructive-foreground": destructiveForeground,
+        "--border": border,
+        "--input": input,
+        "--ring": ring,
+        "--radius": `${themeInputs.config.radius}rem`,
     }
 }
+function generateDarkPalette(themeInputs: SelectionValues) {
+    const background = new Color(0,0,100).getColor();
+    const foreground = new Color(themeInputs.hue - 40, 70, 4).getColor();
+    const card = new Color(0,0,100).getColor();
+    const primary = new Color(themeInputs.hue - 5, 83, 57).getColor();
+    const primaryForeground = new Color(themeInputs.hue, 70, 4).getColor();
+    const secondary = new Color(themeInputs.hue - 40, 14, 50).getColor();
 
-class DarkPalette extends ThemePalette {
-    constructor(themeInputs: SelectionValues) {
-        super(themeInputs);
-    }
+    const muted = `${themeInputs.hue - 50} , ${themeInputs.saturation < 30 ? themeInputs.saturation : 30}%, ${25}%`;
+    const mutedForeground = `${themeInputs.hue} , ${5}%, ${60}%`;
+    const accent = `${themeInputs.hue - 50} , ${themeInputs.saturation < 30 ? themeInputs.saturation : 30}%, ${themeInputs.lightness < 25 ? themeInputs.lightness : 25}%`;
+    const accentForeground = `${themeInputs.hue - 50} , ${5}%, ${90}%`;
+    const destructive = new Color(0, 50, 50).getColor();
+    const destructiveForeground = `${themeInputs.hue - 50} , ${5}%, ${90}%`;
+    const border = `${themeInputs.hue} , ${themeInputs.saturation < 30 ? themeInputs.saturation : 30}%, ${themeInputs.lightness < 50 ? themeInputs.lightness : 50}%`;
+    const input = `${themeInputs.hue} , ${themeInputs.saturation < 30 ? themeInputs.saturation : 30}%, ${themeInputs.lightness < 50 ? themeInputs.lightness : 50}%`;
+    const ring = `${themeInputs.hue} , ${55}%, ${40}%`;
 
-    private getBackground() {
-        return new Color(this.themeInputs.hue, this.themeInputs.saturation, this.themeInputs.lightness).getColorWithThreshold(50, 10);
-    }
-
-    private getForeground() {
-        return new Color(this.themeInputs.hue, this.themeInputs.saturation, this.themeInputs.lightness).getColorWithThreshold(5, 90);
-    }
-
-    private getCard() {
-        return new Color(this.themeInputs.hue, this.themeInputs.saturation, this.themeInputs.lightness).getColorWithThreshold(80, 5);
-    }
-
-    private getCardForeground() {
-        return this.getForeground()
-    }
-
-    private getPopover() {
-        return this.getCard()
-    }
-
-    private getPopoverForeground() {
-        return this.getForeground()
-    }
-
-    private getPrimary() {
-        return `${this.themeInputs.hue - 5} , ${this.themeInputs.saturation}%, ${this.themeInputs.lightness}%`
-
-    }
-
-    private getPrimaryForeground() {
-        return `${0} , ${100}%, ${100}%`
-
-    }
-
-    private getSecondary() {
-        return `${this.themeInputs.hue - 180} , ${this.themeInputs.saturation < 30 ? this.themeInputs.saturation : 30}%, ${this.themeInputs.lightness}%`
-    }
-
-    private getSecondaryForeground() {
-        return this.getPrimaryForeground()
-    }
-
-    private getMuted() {
-        return `${this.themeInputs.hue - 50} , ${this.themeInputs.saturation < 30 ? this.themeInputs.saturation : 30}%, ${25}%`
-    }
-
-    private getMutedForeground() {
-        return `${this.themeInputs.hue} , ${5}%, ${60}%`
-    }
-
-    private getAccent() {
-        return `${this.themeInputs.hue - 50} , ${this.themeInputs.saturation < 30 ? this.themeInputs.saturation : 30}%, ${this.themeInputs.lightness < 25 ? this.themeInputs.lightness : 25}%`
-    }
-
-    private getAccentForeground() {
-        return `${this.themeInputs.hue - 50} , ${5}%, ${90}%`
-    }
-
-    private getDestructive() {
-        return new Color(0, 50, 50).getColor()
-    }
-
-    private getDestructiveForeground() {
-        return `${this.themeInputs.hue - 50} , ${5}%, ${90}%`
-    }
-
-    private getBorder() {
-        return `${this.themeInputs.hue - 50} , ${this.themeInputs.saturation < 30 ? this.themeInputs.saturation : 30}%, ${this.themeInputs.lightness < 50 ? this.themeInputs.lightness : 50}%`
-
-    }
-
-    private getInput() {
-        return `${this.themeInputs.hue - 50} , ${this.themeInputs.saturation < 30 ? this.themeInputs.saturation : 30}%, ${this.themeInputs.lightness < 50 ? this.themeInputs.lightness : 50}%`
-    }
-
-    private getRing() {
-        return `${this.themeInputs.hue - 50} , ${55}%, ${40}%`
-    }
-
-    generateDarkTheme() {
-        return {
-            "--background": this.getBackground(),
-            "--foreground": this.getForeground(),
-            "--card": this.getCard(),
-            "--card-foreground": this.getCardForeground(),
-            "--popover": this.getPopover(),
-            "--popover-foreground": this.getPopoverForeground(),
-            "--primary": this.getPrimary(),
-             "--primary-foreground": this.getForeground(),
-             "--secondary": this.getSecondary(),
-             "--secondary-foreground": this.getSecondaryForeground(),
-             "--muted": this.getMuted(),
-             "--muted-foreground": this.getMutedForeground(),
-             "--accent": this.getAccent(),
-             "--accent-foreground": this.getAccentForeground(),
-             "--destructive": this.getDestructive(),
-             "--destructive-foreground": this.getDestructiveForeground(),
-             "--border": this.getBorder(),
-             "--input": this.getInput(),
-             "--ring": this.getRing(),
-        }
+    return {
+        "--background": background,
+        "--foreground": foreground,
+        "--card": card,
+        "--card-foreground": foreground,
+        "--popover": card,
+        "--popover-foreground": foreground,
+        "--primary": primary,
+        "--primary-foreground": primaryForeground,
+        "--secondary": secondary,
+        "--secondary-foreground": primaryForeground,
+        "--muted": muted,
+        "--muted-foreground": mutedForeground,
+        "--accent": accent,
+        "--accent-foreground": accentForeground,
+        "--destructive": destructive,
+        "--destructive-foreground": destructiveForeground,
+        "--border": border,
+        "--input": input,
+        "--ring": ring,
     }
 }
-

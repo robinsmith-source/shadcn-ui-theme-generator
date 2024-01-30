@@ -21,9 +21,19 @@ export class Color {
         return `${this.hue}, ${this.saturation}%, ${this.lightness}%`;
     }
     
-    getColorWithThreshold(saturationThreshold: number, lightnessThreshold: number): string {
-        const saturation = this.saturation < saturationThreshold ? this.saturation : saturationThreshold;
-        const lightness = this.lightness < lightnessThreshold ? this.lightness : lightnessThreshold;
-        return `${this.hue}, ${saturation}%, ${lightness}%`;
+    setMinLightness(min: number) {
+        this.lightness = Math.max(min, this.lightness);
+    }
+
+    setMaxLightness(max: number) {
+        this.lightness = Math.min(max, this.lightness);
+    }
+
+    setMinSaturation(min: number) {
+        this.saturation = Math.max(min, this.saturation);
+    }
+
+    setMaxSaturation(max: number) {
+        this.saturation = Math.min(max, this.saturation);
     }
 }

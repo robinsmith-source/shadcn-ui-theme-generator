@@ -1,8 +1,10 @@
-import CalendarDemo from "@/components/example/calendar-demo.tsx";
-import {CardDemo} from "@/components/example/card-demo.tsx";
-import TabsDemo from "@/components/example/tabs-demo.tsx";
-import TableDemo from "@/components/example/table-demo.tsx";
-import {CommandDemo} from "@/components/example/command-demo.tsx";
+import CalendarDemo from "@/components/example/calendar-demo";
+import {CardDemo} from "@/components/example/card-demo";
+import TabsDemo from "@/components/example/tabs-demo";
+import TableDemo from "@/components/example/table-demo";
+import {CommandDemo} from "@/components/example/command-demo";
+import {ChatDemo} from "@/components/example/chat-demo";
+import DataTableDemo from "@/components/example/dataTable-demo";
 
 export default function DemoSection() {
     return (
@@ -12,6 +14,8 @@ export default function DemoSection() {
             <TabsDemo/>
             <TableDemo/>
             <CommandDemo/>
+            <ChatDemo/>
+            <DataTableDemo/>
         </section>
     )
 }

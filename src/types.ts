@@ -18,7 +18,6 @@ export type CSSVariables = {
     "--border": string
     "--input": string
     "--ring": string
-    "--radius"?: string
 }
 
 
@@ -29,4 +28,16 @@ export type SelectionValues = {
     config : {
         radius: number
     }
+}
+
+export type ThemeOutputs = {
+    dark: CSSVariables
+    light: CSSVariables & {
+        "--radius": string
+    }
+}
+
+export enum Theme {
+    dark = "dark",
+    light = "light"
 }
