@@ -4,6 +4,11 @@ import * as React from "react"
 import {Payment, columns} from "@/lib/dataTableTypes.tsx";
 import {
 
+    ChevronDownIcon,
+
+} from "@radix-ui/react-icons"
+import {
+
     ColumnFiltersState,
     SortingState,
     VisibilityState,
@@ -14,18 +19,21 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table"
-import {
-
-    ChevronDownIcon,
-
-} from "@radix-ui/react-icons"
 
 import {Button} from "@/components/ui/button"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
 
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
+
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {Input} from "@/components/ui/input"
@@ -37,7 +45,6 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 
 const data: Payment[] = [
     {
@@ -72,7 +79,7 @@ const data: Payment[] = [
     },
 ]
 
-export function DataTableDemo() {
+export function CardsDataTable() {
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []

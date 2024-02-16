@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 
 const start = new Date(2023, 5, 5)
 
-export function CalendarDemo() {
+export function CardsCalendar() {
   return (
     <Card className="max-w-[280px]">
       <CardContent className="p-0">

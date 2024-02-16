@@ -1,5 +1,6 @@
-import {useTheme} from "@/components/misc/theme-provider.tsx"
+
 import {ToggleGroup, ToggleGroupItem} from "@/components/ui/toggle-group.tsx";
+import {useTheme} from "@/lib/themeProviderTypes.tsx";
 
 export function ModeToggle(
 ) {

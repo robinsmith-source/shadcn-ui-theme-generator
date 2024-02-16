@@ -5,15 +5,19 @@ import SaturationSelector from "@/components/selector/saturation-selector.tsx";
 import LightnessSelector from "@/components/selector/lightness-selector.tsx";
 import HueSelector from "@/components/selector/hue-selector.tsx";
 import CopyButton from "@/components/misc/copy-button.tsx";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {generateTheme} from "@/utils/theme-generator.ts";
-import {SelectionValues} from "@/types.ts";
 import {syncTheme} from "@/utils/theme-syncer.ts";
-import {useDebounce} from "usehooks-ts";
+import {useGeneratedTheme} from "@/lib/generatedThemeContext.ts";
+import {useSelectionContext} from "@/lib/selectionContext.ts";
+
+
 
 
 export default function ThemeSection() {
-    const [selection, setSelection] = useState<SelectionValues>(
+    const {theme, setTheme } = useGeneratedTheme();
+const { selection, setSelection } = useSelectionContext();
+   /* const [selection, setSelection] = useState<SelectionValues>(
         {
             hue: 0,
             saturation: 50,
@@ -22,13 +26,16 @@ export default function ThemeSection() {
                 radius: 0,
             },
         }
-    )
+    )*/
 
-    const debouncedValue = useDebounce<SelectionValues>(selection, 200)
 
     useEffect(() => {
-        syncTheme(generateTheme(debouncedValue), ".dynamic-theme");
-    }, [debouncedValue]);
+   const generatedTheme = generateTheme(selection);
+setTheme(generatedTheme);
+syncTheme(generatedTheme, ".dynamic-theme");
+    }, [selection, setTheme]);
+
+    console.log(theme)
 
     return (
         <section className="w-full sm:w-96">

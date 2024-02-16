@@ -1,4 +1,4 @@
-import {CSSVariables} from "@/types.ts";
+import {CSSVariables} from "@/lib/types.ts";
 
 
 function generateCSSVariables(cssVariables: CSSVariables, className: string) {
