@@ -26,7 +26,7 @@ export default function CopyButton() {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button>Copy code</Button>
+                <Button variant="outline">Copy code</Button>
             </DialogTrigger>
             <DialogContent className="max-w-2xl max-h-[90vh] outline-none">
                 <DialogHeader>
