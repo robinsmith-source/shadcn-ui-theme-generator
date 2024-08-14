@@ -1,6 +1,6 @@
 'use client';
 
-import { type ReactNode, useEffect } from 'react';
+import { type ReactNode } from 'react';
 
 import * as Portal from '@radix-ui/react-portal';
 import { range } from 'lodash';
