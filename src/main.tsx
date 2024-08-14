@@ -8,7 +8,7 @@ import Footer from '@/components/layout/footer';
 
 import { StyleProvider } from '@/components/style-provider';
 import CardsDemo from '@/components/cards';
-import Analytics from '@/components/misc/analytics.tsx';
+import Analytics from '@/components/misc/analytics';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

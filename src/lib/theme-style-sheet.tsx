@@ -4,7 +4,6 @@ import { useMemo } from 'react';
 import { useThemeConfig } from '@/stores/theme-store';
 import { themeToStyles } from '@/lib/theme-to-styles';
 
-// This weird approach is necessary to also style the portaled components
 export const ThemeStyleSheet = () => {
   const config = useThemeConfig();
 
@@ -23,11 +22,11 @@ export const ThemeStyleSheet = () => {
       .join('\n');
 
     return `
-    .customizable {
+    .ported {
       ${lightStyles}
     }
 
-    html.dark .customizable {
+    html.dark .ported {
       ${darkStyles}
     }`;
   }, [config]);
