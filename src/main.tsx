@@ -8,6 +8,7 @@ import Footer from '@/components/layout/footer';
 
 import { StyleProvider } from '@/components/style-provider';
 import CardsDemo from '@/components/cards';
+import Analytics from '@/components/misc/analytics.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <Controls />
               <CardsDemo />
             </div>
+            <Analytics />
           </main>
           <Footer />
         </StyleProvider>
