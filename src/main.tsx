@@ -1,30 +1,29 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import ThemeSection from "@/components/theme-section.tsx";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import Controls from '@/components/controls.tsx';
+import { ThemeProvider } from '@/components/layout/theme-provider';
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
 
-import {ThemeProvider} from "@/components/misc/theme-provider.tsx";
-import Header from "@/components/header.tsx";
-import Footer from "@/components/footer.tsx";
-import CardsDemo from "@/components/cards-demo.tsx";
-import {SelectionProvider} from "@/utils/selection-provider.tsx";
-import {GeneratedThemeProvider} from "@/utils/generatedThemeProvider.tsx";
+import { StyleProvider } from '@/components/style-provider';
+import CardsDemo from '@/components/cards';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <div className="flex flex-col items-center justify-center space-y-16 mx-auto min-h-screen max-w-screen-2xl p-6">
-            <ThemeProvider>
-                <Header/>
-                <div className="dynamic-theme flex flex-col justify-center items-center space-y-8 w-full">
-                    <GeneratedThemeProvider>
-                        <SelectionProvider>
-                            <ThemeSection/>
-                            <CardsDemo/>
-                        </SelectionProvider>
-                    </GeneratedThemeProvider>
-                </div>
-                <Footer/>
-            </ThemeProvider>
-        </div>
-    </React.StrictMode>,
-)
+  <React.StrictMode>
+    <div className='mx-auto flex min-h-screen w-full flex-col'>
+      <ThemeProvider>
+        <StyleProvider>
+          <Header />
+          <main className='mx-auto flex max-w-screen-2xl flex-1 flex-col py-32'>
+            <div className='flex w-full flex-col items-center justify-center space-y-8'>
+              <Controls />
+              <CardsDemo />
+            </div>
+          </main>
+          <Footer />
+        </StyleProvider>
+      </ThemeProvider>
+    </div>
+  </React.StrictMode>
+);
