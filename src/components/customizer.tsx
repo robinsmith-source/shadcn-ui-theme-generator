@@ -11,13 +11,13 @@ import GeneratorButton from '@/components/misc/generator-button.tsx';
 
 export default function Customizer() {
   return (
-    <div className='flex items-start justify-between rounded border bg-slate-300 p-4 dark:bg-gray-900'>
+    <div className='flex items-start justify-between rounded border bg-slate-300 p-4 dark:bg-black/50'>
       <div className='grid w-80 grid-cols-2 items-end gap-2 px-3'>
         {changeableThemeValues.map(({ label, themeKey }) => (
           <ThemeValue label={label} themeKey={themeKey} key={themeKey} />
         ))}
       </div>
-      <GenerateTheme/>
+      <GenerateTheme />
       <GeneratorButton />
     </div>
   );
@@ -144,19 +144,13 @@ const ThemeValue = ({
 
       <ColorSelection
         color={color}
-        onColorChange={(color) => {
-          const hsl = color.hsl;
-          const h = Number(hsl.h.toFixed(2));
-          const s = Number(hsl.s.toFixed(2));
-          const l = Number(hsl.l.toFixed(2));
-
+        onColorChange={({ h, s, l }) => {
           changeThemeValue(themeKey, { h, s, l });
         }}
       />
     </div>
   );
 };
-
 
 function GenerateTheme() {
   const theme = useActiveTheme();

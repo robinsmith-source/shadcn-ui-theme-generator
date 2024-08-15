@@ -1,40 +1,29 @@
-'use client';
-
-import { PopoverContent } from '@radix-ui/react-popover';
-import {
-  type ColorResult,
-  hslaToHsva,
-  type HslColor,
-  hsvaToHex,
-} from '@uiw/react-color';
-import ChromeColorPicker from '@uiw/react-color-chrome';
-import { Popover, PopoverTrigger } from '@/components/ui/popover';
+import { useMemo, useCallback, ChangeEvent } from 'react';
+import { Input } from '@/components/ui/input';
+import { HslColor, colord } from 'colord';
+import { useDebounceCallback } from 'usehooks-ts';
 
 export const ColorSelection = ({
   color,
   onColorChange,
 }: {
   color: HslColor;
-  onColorChange: (color: ColorResult) => void;
+  onColorChange: (color: HslColor) => void;
 }) => {
-  const hsva = hslaToHsva({
-    ...color,
-    a: 1,
-  });
+  const initialHex = useMemo(() => colord(color).toHex(), [color]);
 
-  return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <button
-          className='h-6 w-full flex-shrink-0 rounded border'
-          style={{
-            backgroundColor: hsvaToHex(hsva),
-          }}
-        ></button>
-      </PopoverTrigger>
-      <PopoverContent className='isolate z-50'>
-        <ChromeColorPicker color={hsva} onChange={onColorChange} />
-      </PopoverContent>
-    </Popover>
+  const debouncedColorChange = useDebounceCallback((newHex: string) => {
+    const newHsva = colord(newHex).toHsv();
+    onColorChange(colord(newHsva).toHsl());
+  }, 200);
+
+  const handleInputChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const newHex = event.target.value;
+      debouncedColorChange(newHex);
+    },
+    [debouncedColorChange]
   );
+
+  return <Input type='color' value={initialHex} onChange={handleInputChange} />;
 };
