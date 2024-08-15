@@ -81,3 +81,18 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-foreground;
 }
+
+/* WebKit browsers (Chrome, Safari, Edge) */
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border: none;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
+
+/* For Firefox */
+input[type="color"]::-moz-color-swatch {
+  border: none;
+}

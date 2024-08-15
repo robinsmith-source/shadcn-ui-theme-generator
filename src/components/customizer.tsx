@@ -11,7 +11,7 @@ import GeneratorButton from '@/components/misc/generator-button.tsx';
 
 export default function Customizer() {
   return (
-    <div className='flex items-start justify-between rounded border bg-slate-300 p-4 dark:bg-black/50'>
+    <div className='flex items-start justify-between rounded border bg-slate-300 p-4 text-black dark:bg-black/50'>
       <div className='grid w-80 grid-cols-2 items-end gap-2 px-3'>
         {changeableThemeValues.map(({ label, themeKey }) => (
           <ThemeValue label={label} themeKey={themeKey} key={themeKey} />
