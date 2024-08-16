@@ -14,19 +14,17 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <div className='mx-auto flex min-h-screen w-full flex-col'>
       <ThemeProvider>
-        <StyleProvider>
-          <Header />
-          <main className='mx-auto flex max-w-screen-2xl flex-1 flex-col py-32'>
-            <div className='grid w-full items-center justify-center space-y-8'>
-              {/*<PageHeader/>*/}
-              <Customizer />
-              <Separator className='my-4' />
+        <Header />
+        <main className='mx-auto flex max-w-screen-2xl flex-1 flex-col px-6 py-32'>
+          <div className='grid w-full items-center justify-center space-y-8'>
+            <Customizer />
+            <Separator className='my-4' />
+            <StyleProvider>
               <CardsDemo />
-            </div>
-            <Analytics />
-          </main>
-          {/*<Footer />*/}
-        </StyleProvider>
+            </StyleProvider>
+          </div>
+          <Analytics />
+        </main>
       </ThemeProvider>
     </div>
   </React.StrictMode>
