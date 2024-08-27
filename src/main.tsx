@@ -15,16 +15,16 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <div className='mx-auto flex min-h-screen w-full flex-col'>
       <ThemeProvider>
         <Header />
-        <main className='mx-auto flex max-w-screen-2xl flex-1 flex-col px-6 py-32'>
-          <div className='grid w-full items-center justify-center space-y-8'>
-            <Customizer />
-            <Separator className='my-4' />
-            <StyleProvider>
+        <StyleProvider>
+          <main className='mx-auto flex max-w-screen-2xl flex-1 flex-col px-6 py-32'>
+            <div className='grid w-full items-center justify-center space-y-8'>
+              <Customizer />
+              <Separator className='my-4' />
               <CardsDemo />
-            </StyleProvider>
-          </div>
-          <Analytics />
-        </main>
+            </div>
+            <Analytics />
+          </main>
+        </StyleProvider>
       </ThemeProvider>
     </div>
   </React.StrictMode>
