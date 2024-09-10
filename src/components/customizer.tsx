@@ -12,18 +12,20 @@ import CopyButton from '@/components/misc/copy-button.tsx';
 
 export default function Customizer() {
   return (
-    <div className='flex flex-col items-start justify-between gap-8 rounded-md border bg-muted/50 p-6 md:flex-row'>
+    <section className='mx-auto flex flex-col items-center justify-center gap-12 rounded-md border bg-muted/30 p-6'>
       <div className='grid grid-cols-4 items-end gap-x-6 gap-y-3'>
         {changeableThemeValues.map(({ label, themeKey }) => (
           <ThemeValue label={label} themeKey={themeKey} key={themeKey} />
         ))}
       </div>
-      <div className='grid w-36 grid-cols-1 items-start gap-4'>
-        {/*<GenerateTheme />*/}
-        <GeneratorButton />
-        <CopyButton className='col-span-full' />
+      <div className='flex flex-col gap-6'>
+        <GenerateTheme />
+        <div className='grid grid-cols-2 items-center gap-4'>
+          <CopyButton className='' />
+          <GeneratorButton />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -163,7 +165,7 @@ function GenerateTheme() {
   if (!theme) return null;
 
   return (
-    <div className='rounded-md border p-4'>
+    <div>
       <span>Generate a theme based on the primary color</span>
       <div className='mt-2'>
         <ThemeValue label='Primary' themeKey='primary' />

@@ -17,9 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Header />
         <StyleProvider>
           <main className='mx-auto flex max-w-screen-2xl flex-1 flex-col px-6 py-32'>
+            <Customizer />
+            <Separator className='my-4' />
             <div className='grid w-full items-center justify-center space-y-8'>
-              <Customizer />
-              <Separator className='my-4' />
               <CardsDemo />
             </div>
             <Analytics />
