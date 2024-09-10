@@ -30,7 +30,7 @@ export const ColorSelection = ({
       type='color'
       value={initialHex}
       onChange={handleInputChange}
-      className='h-8 w-full cursor-pointer appearance-none overflow-hidden rounded-md border-none p-0'
+      className='h-8 w-full cursor-pointer appearance-none overflow-hidden rounded-md border-none p-0 shadow-sm'
     />
   );
 };

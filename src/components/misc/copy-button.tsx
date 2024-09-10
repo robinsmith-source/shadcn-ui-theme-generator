@@ -15,7 +15,7 @@ import { toPairs } from 'lodash';
 import { ThemeConfig } from '@/types/theme-schema';
 import { themeToStyles } from '@/lib/theme-to-styles';
 
-export default function CopyButton() {
+export default function CopyButton({ className }: { className?: string }) {
   const config = useThemeConfig();
   const cssCode = configToCss(config);
 
@@ -24,7 +24,9 @@ export default function CopyButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant='outline'>Copy code</Button>
+        <Button variant='default' className={className}>
+          Copy code
+        </Button>
       </DialogTrigger>
       <DialogContent className='max-h-[90vh] max-w-2xl outline-none'>
         <DialogHeader>

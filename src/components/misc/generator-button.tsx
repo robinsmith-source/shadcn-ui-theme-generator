@@ -23,7 +23,7 @@ export default function GeneratorButton() {
   };
 
   return (
-    <div className='flex items-center gap-4'>
+    <div className='ml-auto flex items-center gap-4'>
       {themeStack.length > 0 && (
         <Button onClick={handleUndoClick}>
           <Undo2 className='size-4' />

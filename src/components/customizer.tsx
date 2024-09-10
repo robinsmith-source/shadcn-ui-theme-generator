@@ -8,17 +8,21 @@ import { Button } from '@/components/ui/button';
 import { createThemeConfig } from '@/utils/generator';
 import { useTheme } from '@/components/layout/theme-provider';
 import GeneratorButton from '@/components/misc/generator-button.tsx';
+import CopyButton from '@/components/misc/copy-button.tsx';
 
 export default function Customizer() {
   return (
-    <div className='flex items-start justify-between rounded border p-4'>
-      <div className='grid w-80 grid-cols-2 items-end gap-2 px-3'>
+    <div className='flex flex-col items-start justify-between gap-8 rounded-md border bg-muted/50 p-6 md:flex-row'>
+      <div className='grid grid-cols-4 items-end gap-x-6 gap-y-3'>
         {changeableThemeValues.map(({ label, themeKey }) => (
           <ThemeValue label={label} themeKey={themeKey} key={themeKey} />
         ))}
       </div>
-      <GenerateTheme />
-      <GeneratorButton />
+      <div className='grid w-36 grid-cols-1 items-start gap-4'>
+        {/*<GenerateTheme />*/}
+        <GeneratorButton />
+        <CopyButton className='col-span-full' />
+      </div>
     </div>
   );
 }
@@ -159,15 +163,13 @@ function GenerateTheme() {
   if (!theme) return null;
 
   return (
-    <div className='border border-dotted px-2 py-4'>
-      <p className='text-sm font-medium'>Generate theme</p>
-      <p className='text-xs text-muted-foreground'>
-        Based on the primary color
-      </p>
-      <div className='flex items-center justify-between gap-1 py-2'>
+    <div className='rounded-md border p-4'>
+      <span>Generate a theme based on the primary color</span>
+      <div className='mt-2'>
         <ThemeValue label='Primary' themeKey='primary' />
         <Button
-          className='h-auto px-4 py-1 text-sm'
+          size='sm'
+          className='mt-2'
           onClick={() => {
             setThemeConfig(createThemeConfig(theme.primary));
           }}
