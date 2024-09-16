@@ -1,7 +1,7 @@
 import { ModeToggle } from '@/components/misc/mode-toggle';
-import { buttonVariants } from '@/lib/buttonVariants.ts';
+import { buttonVariants } from '@/lib/buttonVariants';
 import { Icons } from '../misc/icons';
-import { cn } from '@/lib/utils.ts';
+import { cn } from '@/lib/utils';
 
 export default function Header() {
   return (
@@ -14,7 +14,13 @@ export default function Header() {
         </a>
         <div className='flex flex-1 items-center justify-between space-x-2 md:justify-end'>
           <nav className='flex items-center gap-2'>
-            <a href={'/'} target='_blank' rel='noreferrer'>
+            <a
+              href={
+                'https://github.com/robinsmith-source/shadcn-ui-theme-generator'
+              }
+              target='_blank'
+              rel='noreferrer'
+            >
               <div
                 className={cn(
                   buttonVariants({
