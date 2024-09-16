@@ -30,7 +30,7 @@ export default function GeneratorButton() {
           <span className='ml-2'>Undo</span>
         </Button>
       )}
-      <Button onClick={handleSaveClick} size='icon'>
+      <Button onClick={handleSaveClick} variant='default' className='h-10'>
         <Dices />
       </Button>
     </div>
