@@ -1,16 +1,20 @@
 'use client';
 
 import { Theme } from '@/types/theme-schema';
-import { useActiveTheme, useSetThemeConfig } from '@/stores/theme-store';
+import {
+  useActiveTheme,
+  useSetThemeConfig,
+  useSetThemeStack,
+  useThemeStore,
+} from '@/stores/theme-store';
 import { ColorSelection } from '@/components/color-picker';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { createThemeConfig } from '@/utils/generator';
 import { useTheme } from '@/components/layout/theme-provider';
-import GeneratorButton from '@/components/misc/generator-button';
 import CopyButton from '@/components/misc/copy-button';
 import { useState } from 'react';
-import { Lock, Unlock } from 'lucide-react';
+import { Dices, Lock, Undo2, Unlock } from 'lucide-react';
 
 export default function Customizer() {
   const [lockedStates, setLockedStates] = useState<
@@ -51,10 +55,9 @@ export default function Customizer() {
         ))}
       </div>
       <div className='flex flex-col gap-6'>
-        <GenerateTheme lockedStates={lockedStates} />
         <div className='grid grid-cols-2 items-center gap-4'>
           <CopyButton className='' />
-          <GeneratorButton />
+          <GenerateTheme lockedStates={lockedStates} />
         </div>
       </div>
     </section>
@@ -212,7 +215,9 @@ function GenerateTheme({
   lockedStates: Record<keyof Theme, boolean>;
 }) {
   const theme = useActiveTheme();
-  const setThemeConfig = useSetThemeConfig();
+  const themeStack = useThemeStore((state) => state.themeStack);
+  const setTheme = useSetThemeConfig();
+  const setThemeStack = useSetThemeStack();
 
   if (!theme) return null;
 
@@ -227,23 +232,27 @@ function GenerateTheme({
     return lockedColors;
   };
 
+  const handleSaveClick = () => setTheme(createThemeConfig(getLockedColors()));
+
+  const handleUndoClick = () => {
+    const previousTheme = themeStack.pop();
+    if (previousTheme) {
+      setTheme(previousTheme);
+      setThemeStack([...themeStack]);
+    }
+  };
+
   return (
-    <div>
-      <span>Generate a theme based on the locked colors</span>
-      <div className='mt-2'>
-        <Button
-          size='sm'
-          className='mt-2'
-          onClick={() => {
-            const lockedColors = getLockedColors();
-            console.log(lockedColors);
-            const newThemeConfig = createThemeConfig(lockedColors);
-            setThemeConfig(newThemeConfig);
-          }}
-        >
-          Generate
+    <div className='ml-auto flex items-center gap-4'>
+      {themeStack.length > 0 && (
+        <Button onClick={handleUndoClick}>
+          <Undo2 className='size-4' />
+          <span className='ml-2'>Undo</span>
         </Button>
-      </div>
+      )}
+      <Button onClick={handleSaveClick} variant='default' className='h-10'>
+        <Dices />
+      </Button>
     </div>
   );
 }
