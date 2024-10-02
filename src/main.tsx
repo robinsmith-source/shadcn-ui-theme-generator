@@ -1,30 +1,30 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import ThemeSection from "@/components/theme-section.tsx";
-
-import {ThemeProvider} from "@/components/misc/theme-provider.tsx";
-import Header from "@/components/header.tsx";
-import Footer from "@/components/footer.tsx";
-import CardsDemo from "@/components/cards-demo.tsx";
-import {SelectionProvider} from "@/utils/selection-provider.tsx";
-import {GeneratedThemeProvider} from "@/utils/generatedThemeProvider.tsx";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { ThemeProvider } from '@/components/layout/theme-provider';
+import Header from '@/components/layout/header';
+import { StyleProvider } from '@/components/style-provider';
+import Analytics from '@/components/misc/analytics';
+import Customizer from '@/components/customizer';
+import CardsDemo from '@/components/cards';
+import { Separator } from '@/components/ui/separator';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <div className="flex flex-col items-center justify-center space-y-16 mx-auto min-h-screen max-w-screen-2xl p-6">
-            <ThemeProvider>
-                <Header/>
-                <div className="dynamic-theme flex flex-col justify-center items-center space-y-8 w-full">
-                    <GeneratedThemeProvider>
-                        <SelectionProvider>
-                            <ThemeSection/>
-                            <CardsDemo/>
-                        </SelectionProvider>
-                    </GeneratedThemeProvider>
-                </div>
-                <Footer/>
-            </ThemeProvider>
-        </div>
-    </React.StrictMode>,
-)
+  <React.StrictMode>
+    <div className='mx-auto flex min-h-screen w-full flex-col'>
+      <ThemeProvider>
+        <Header />
+        <StyleProvider>
+          <main className='mx-auto flex max-w-screen-2xl flex-1 flex-col px-6 py-32'>
+            <Customizer />
+            <Separator className='my-4' />
+            <div className='grid w-full items-center justify-center space-y-8'>
+              <CardsDemo />
+            </div>
+            <Analytics />
+          </main>
+        </StyleProvider>
+      </ThemeProvider>
+    </div>
+  </React.StrictMode>
+);
