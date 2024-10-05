@@ -4,7 +4,6 @@ import './index.css';
 import { ThemeProvider } from '@/components/layout/theme-provider';
 import Header from '@/components/layout/header';
 import { StyleProvider } from '@/components/style-provider';
-import Analytics from '@/components/misc/analytics';
 import Customizer from '@/components/customizer';
 import CardsDemo from '@/components/cards';
 import { Separator } from '@/components/ui/separator';
@@ -21,7 +20,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <div className='grid w-full items-center justify-center space-y-8'>
               <CardsDemo />
             </div>
-            <Analytics />
           </main>
         </StyleProvider>
       </ThemeProvider>
