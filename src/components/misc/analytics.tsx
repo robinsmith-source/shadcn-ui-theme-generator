@@ -6,8 +6,8 @@ export default function Analytics() {
   return (
     <script
       async
-      data-website-id={import.meta.env.VITE_PUBLIC_UMAMI_URL}
-      src={`${import.meta.env.VITE_PUBLIC_UMAMI_WEBSITE_ID}/script.js`}
+      data-website-id={import.meta.env.VITE_PUBLIC_UMAMI_WEBSITE_ID}
+      src={`${import.meta.env.VITE_PUBLIC_UMAMI_URL}/script.js`}
     />
   );
 }
